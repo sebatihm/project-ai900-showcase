@@ -1,4 +1,4 @@
-# Borrador del proyecto Río Claro
+# Distribuidora Río Claro
 
 ## 1. Descripción general
 
@@ -9,6 +9,9 @@ Río Claro es una plataforma web para la gestión comercial de una distribuidora
 - Servicios de inteligencia artificial de Microsoft Azure.
 - Una base de datos para la gestión de la información comercial.
 
+### Repositorios del proyecto
+- Cliente Web: ![project-ai900-frontend](https://github.com/sebatihm/project-ai900-frontend)
+- API REST: ![project-ai900](https://github.com/sebatihm/project-ai900)
 ## 2. Funcionalidades administrativas del frontend
 
 El frontend permite acceder a los siguientes módulos administrativos:
@@ -133,7 +136,6 @@ El frontend está desarrollado con:
 - Tailwind CSS.
 - ESLint.
 
-La estructura principal del frontend se encuentra en `project-ai901-frontend`.
 
 ## 4. Funcionalidades de inteligencia artificial
 
@@ -246,7 +248,7 @@ concreta. La siguiente tabla resume cómo se responde cada pregunta:
 | **Privacidad y seguridad** | La información sensible debe enviarse solo a los servicios que la necesitan. En el prototipo, el backend protege los endpoints con JWT, contraseñas BCrypt y roles. La integración específica con Entra ID y Azure Key Vault debe completarse y demostrarse en el despliegue; no se debe presentar como implementada si solo está configurada como objetivo de arquitectura. | El frontend no expone la clave de Speech: envía el audio al backend, que consume Azure Speech Services. Las credenciales y secretos se leen mediante configuración del entorno. Para la evidencia final se debe mostrar el uso de Entra ID y Key Vault en Azure, o declarar esta parte como pendiente. |
 | **Inclusión** | El personal de bodega puede interactuar con el asistente por voz, además de texto, lo que reduce la dependencia del teclado. La interfaz web puede abrirse desde un celular, pero conviene validar explícitamente el flujo en ese dispositivo. | El asistente convierte audio a texto con Azure Speech Services antes de procesarlo. La evidencia debe incluir una consulta hecha por voz desde un teléfono y comprobar que los controles y resultados siguen siendo utilizables en una pantalla pequeña. |
 | **Transparencia** | El usuario debe saber que está conversando con una IA y qué información sustenta la respuesta. | La aplicación separa el asistente interno del asistente público y presenta el módulo como asistente de IA. En facturas se muestran los datos extraídos, el estado del análisis, las inconsistencias y el documento original. Para cumplir completamente el principio, cada respuesta conversacional debe mostrar también la fuente o el documento consultado; si todavía no aparece, debe registrarse como mejora pendiente. |
-| **Rendición de cuentas** | La IA solo recomienda; una persona autorizada revisa y aprueba acciones sensibles, especialmente antes de pagar una factura. | La revisión de facturas está restringida a `ADMIN`, `BOSS` y `ADMIN_SUPPORT`. El sistema registra quién revisó (`reviewedBy`) y cuándo (`reviewedAt`), por lo que la empresa puede identificar al responsable de la decisión. |
+| **Rendición de cuentas** | La IA solo recomienda; una persona autorizada revisa y aprueba acciones sensibles, especialmente antes de pagar una factura. | La revisión de facturas está restringida a `ADMIN`, `BOSS`. El sistema registra quién revisó (`reviewedBy`) y cuándo (`reviewedAt`), por lo que la empresa puede identificar al responsable de la decisión. |
 
 
 ## 7. Arquitectura en Azure
